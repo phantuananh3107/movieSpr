@@ -1,0 +1,451 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Public+Sans:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*{
+    font-family: "Poppins", sans-serif;
+  
+}
+a{
+    text-decoration: none !important;
+    color: white !important;;
+}
+ul{
+    text-decoration: none;
+    height: 100%;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    cursor: pointer;
+    
+}
+
+li{
+    height: 100%;
+    line-height: 100%;
+    cursor: pointer;
+}
+
+.head-sing{
+    display: flex;
+    justify-content: space-around;
+    color: white !important;
+    
+}
+.head-sing:hover{
+    cursor: pointer;
+    color: red  !important ;
+    transform: scale(1.1);
+    transition: all 0.1s ease;
+}
+
+.head-sing i{
+    font-size: 1.5rem;
+}
+.head-search{
+    height: 50%;
+    width: 100%;
+    display: flex;
+    text-align: center;
+    background: white;
+    border-radius: 0.5rem;
+    color:black;
+    align-items: center;
+    padding: 0 5%;
+   
+}
+.head-search input{
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    outline: none;
+    border: none;
+   
+}
+.item-head:hover a{
+    
+    color: rgb(233, 26, 26);
+    border-radius: 30%;
+    transform: scale(1.2);
+    transition: 0.1s ease-in ;
+}
+.head-search i{
+    width: 1rem;
+    margin-left: 5px;
+}
+.body{
+    padding-top: 2rem !important;
+}
+
+.bg-body{
+/*   
+    background-image: url("../img/bg.jpg"); */
+}
+.card{
+    text-align: center;
+    border: none;
+    border-radius: 0.2rem;
+    overflow: hidden;
+    cursor: pointer;
+    background-color:transparent !important;
+    border: 1px solid black !important;
+    color: white     !important;
+    padding: 0 0 0.3rem 0;
+}
+.card .img{
+    width: 100%;
+}
+.card-aj{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+   
+}
+.card-aj a{
+    color: white;
+}
+.card-text{
+    font-weight: 700;
+    background-color: rgb(87, 4, 4) !important;
+    padding: 0.3rem  0.6rem;
+    border-radius: 10%;
+}
+img{
+    width: 100%;
+    object-fit: cover;
+}
+.bg-ft{
+    background: white;
+    padding: 2rem;
+}
+
+.icon-ft{
+    color: black;
+
+}
+.icon-ft a i{
+    font-size: 1.5rem;
+    color: pink;
+    margin-right: 1rem;
+}
+
+.ft-item{
+    display: flex;
+    flex-direction: column;
+    gap:0.2rem;
+    text-align: left;
+}
+.ft-item li{
+    font-size: 0.8rem;
+    text-align: left;
+    margin-bottom: 20px !important      ;
+}
+.ft-p{
+    font-weight: bold;
+    color: pink;
+    text-align: center;
+}
+.logo-footer{
+    color:  rgb(229, 9, 20);
+    font-size: 3rem;
+}
+
+.footer-li{
+    font-size:1.1rem !important;
+    color:pink;
+    font-weight: bold;
+    font-weight:400;
+   
+}
+
+/* swiper-css */
+.swiper{
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+    margin: 30px auto;
+    padding: 10px auto;
+}
+.swiper-wrapper{
+    display: flex;
+    gap: 20px;
+    transition: transform 0.3s ease;
+
+}
+.swiper-slide{
+    width: 250px !important;
+    margin-right: 20px;
+    flex: 0 0 auto;
+    width: 250px;
+    height: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #444;
+    border-radius: 10px;
+    overflow: hidden;
+    color:white;
+    align-items: center !important;
+    box-shadow: 0 4px 8px rgba(0, 0,0,0.3);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease;
+    border: none;
+}
+.swiper-slide:hover{
+    transform: scale(1.05);
+    box-shadow: 6 6px 12px rgba(0, 0,0,0.5);
+  
+}
+.swiper-slide:hover img{
+    border-radius: 15px;
+    object-fit: cover;
+    overflow: hidden;
+}
+.swiper-slide img{
+    width: 100%;
+    height: 90%;
+    object-fit: cover;
+    border-radius: 15x 15x 0 0 ;
+    overflow: hidden;
+}
+.swiper-slide > p{
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  word-break: break-word;
+  font-size: 1rem;
+  margin-top: 17px;
+  padding-bottom: 13px;
+}
+.swiper-btn{
+    display: flex;
+    justify-content: space-around;
+}
+.swiper-book{
+    background: rgb(67, 6, 6);
+    padding: 5px 20px;
+    border-radius: 5px;
+}
+.swiper-button-prev,.swiper-button-next{
+    color: white !important;
+    border-radius: 50% !important;
+    width: 55px;
+    height: 55px;
+    transition: all 0.3s ease;
+    font-size: 5rem !important;
+}
+.swiper-button-prev:hover,
+.swiper-button-next:hover{
+
+    color: gray !important;
+    padding: 10px !important;
+}
+section > h2{
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    color: white;
+    margin:12px 24px ;
+}
+
+
+/* homeMOvie */
+#homeMovie{
+    display: flex;
+    flex-wrap: wrap;
+    gap:20px;
+    padding: 30px;
+}
+.movie-card{
+    flex: 1 0 200px;
+    /* flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: 200px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #444;
+    border-radius: 10px;
+    overflow: hidden;
+    color:white;
+    align-items: center !important;
+    box-shadow: 0 4px 8px rgba(0, 0,0,0.3);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease;
+    border: none;
+   gap: 40px !important;
+}
+.movie-card:hover{
+    transform: scale(1.05);
+    box-shadow: 6 6px 12px rgba(0, 0,0,0.5);
+}
+.movie-card img{
+    width: 100%;
+}
+.movie-card p{
+    margin-top: 10px;
+    color:white;
+}
+#home-title{
+    padding-top: 90px;
+}
+
+.body{
+    width: 100%;
+    height: 100%;
+}
+/* detail-page */
+
+/* Bố cục tổng thể */
+.movie-detail {
+    width: 100vw;
+    margin-top: 70px;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    padding: 40px;
+    gap: 3rem;
+    position: relative;
+    padding: 20px;
+    color: white;
+    z-index: 2;
+    display: flex;
+    
+    
+}
+.background-blur {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Đẩy ra sau */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    backdrop-filter: blur(10px); /* Làm mờ */
+    opacity: 0.4; /* Độ trong suốt để không quá tối */
+}
+
+/* Background mờ bằng pseudo-element */
+
+
+/* Phần ảnh bên trái */
+.movie-poster img {
+    width: 300px;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1;
+    position: relative;
+}
+
+/* Phần thông tin phim */
+.movie-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 1;
+    position: relative;
+}
+
+
+
+.movie-info h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.movie-info .release-date {
+    font-size: 1.2rem;
+    color: #cccccc;
+    margin-bottom: 20px;
+}
+
+
+.overview-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    opacity: 0.8;
+}
+
+.overview-text {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.detail-btn{
+    display: flex;
+    gap:2.5rem;
+    align-items:center ;
+    margin-top: 1.5rem;
+}
+.detail-btn > p{
+    font-size: 1.3rem;
+    background: rgb(160, 51, 51);
+    padding: 0.8rem 2rem ;
+   border-radius: 10px;
+}
+.detail-item {
+    display: flex;
+    align-items: center; /* Canh giữa theo trục dọc */
+    gap: 8px; 
+}
+
+/* Tùy chỉnh icon nếu cần */
+.detail-item i {
+    font-size: 24px;
+    color: #fff;
+}
+
+/* Tùy chỉnh text nếu cần */
+.detail-item p {
+    font-size: 18px;
+    color: #fff;
+    margin: 0;
+}
+.detail-item:hover,.detail-btn > p:hover{
+    cursor: pointer;
+    opacity: 0.9;
+    transform: scale(0.9);
+    transition: all 0.2s ease;
+}
+
+.ava-info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.ava-info img{
+    width: 40px !important;
+    height: 40px !important;
+    border-radius : 50% !important;
+    margin: 0 15px;
+}
+.ava-info p{
+    position: relative;
+    cursor: pointer;
+    margin: 0;
+}
+.ava-info button{
+    border: none;
+    padding: 5px 25px ;
+    border-radius: 5px;
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 40%;
+    transition: all 0.2s ease;
+}
+.ava-info:hover button{
+    display: block;
+}
+
+#login-icon{
+    cursor: pointer;
+    margin-left: 15px;
+}

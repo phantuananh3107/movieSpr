@@ -1,0 +1,57 @@
+.login-body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-image: url("../img/login-bg.webp");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: cover;
+    color:black;
+}
+.user{
+    width: 600px;
+    margin: 0 auto;
+    margin-top: 10rem;
+    margin-bottom: 5rem;
+    background: white;
+    border:none;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, .13);
+    padding: 1rem;
+}
+
+z   
+.input-group-text{
+    background: #be1e2d !important;
+
+}
+.input-group-text i{
+    color :white;
+    background-color:#be1e2d;
+    border: none;
+}
+.user-desc a{
+    color: #be1e2d !important;
+    text-decoration: none;
+}
+.button-user{
+    width: 100%;
+    background: #be1e2d;
+    color: white;
+    border:none;
+    border-radius: 3px;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+}
+a{
+    text-decoration: none !important;
+   
+}
+#resMessageLogin{
+    padding: 5px !important;
+    color: red;
+    font-size: 1rem;
+    padding-bottom: 1.5rem !important;
+}

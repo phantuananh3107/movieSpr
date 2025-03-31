@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Taplis movie</title>
+
+	<link rel="stylesheet" th:href="@{/assets/css/login.css}">
+	<link rel="stylesheet" th:href="@{/assets/css/style.css}">
+	<link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}">
+	<script th:src="@{/assets/js/bootstrap.bundle.min.js}"></script>
+	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+	<!-- auth.js -->
+		   <script type="module" th:src="@{/assets/js/auth.js}"></script>
+		   <script type="module" th:src="@{/assets/js/search.js}"></script>
+		   <script type="module" th:src="@{/assets/js/script.js}"></script>   
+		        <link rel="stylesheet" th:href="@{/assets/css/search.css}">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-black fixed-top  ">
+            <div class="container-fluid ">
+              <a class="navbar-brand header-logo" href="/index">
+                <h2 class="logo-footer">Taplis</h2>
+              </a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="mynavbar">
+                <ul class="navbar-nav me-auto">
+                  <li class="nav-item p-3 item-head">
+                    <a class="nav-link" href="/lobby">Trang chủ </a>
+                  </li>
+                  <li class="nav-item p-3 item-head">
+                    <a class="nav-link" href="javascript:void(0)">Đặt vé</a>
+                  </li>
+                  <li class="nav-item p-3">
+                    <a class="nav-link" href="javascript:void(0)">
+                        <!-- <div class="head-search">
+                            <input type="text" placeholder="search">
+                            <i class='bx bx-search-alt-2'></i>
+                        </div> -->
+                        <!-- <input class="form-control me-2" type="text" placeholder="Search"> -->
+                       
+                    </a>
+                  </li>
+                </ul>
+                    <a href="#" id="avatar" class="head-sing text-decoration-none ">
+                    
+                            <i class='bx bx-user'></i>
+                            <p class="m-0" style="color: inherit;">Đăng nhập</p>
+                  
+                    </a>
+             
+              </div>
+            </div>
+          </nav>
+    </header>
+
+    <!-- body -->
+    <div class="main ">
+        <form action="" id="search-form">
+            <h1>Tìm kiếm bộ phim yêu thích của bạn</h1>
+            <div>
+                <input type="text" id="search-input" placeholder="Search..." autocomplete="off">
+                <button type="submit">
+                    <i class='bx bx-search-alt-2'></i>
+                </button>
+            </div>
+        </form>
+
+        <div id="movies">
+             <!-- <a href="#" class="search-item ">
+                <img src="img/p5webp.webp" alt="p1">
+                <p>hello</p>
+                
+            </a> -->
+        </div>
+    </div>
+
+   
+
+</body>
+
+</html>
