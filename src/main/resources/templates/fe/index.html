@@ -2,214 +2,218 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Taplis movie</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taplis movie</title>
 
-	<link rel="stylesheet" th:href="@{/assets/css/style.css}">
-	
-	<link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}">
-	<script th:src="@{/assets/js/bootstrap.bundle.min.js}"></script>
-	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}">
+    <!-- Đã bỏ liên kết đến search.css -->
+    <script th:src="@{/assets/js/bootstrap.bundle.min.js}"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
-	<!-- swipper cdn -->
-	   <link rel="stylesheet"  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <!-- Swiper CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-	   <!-- swiper js cdn -->
-	       <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-	       <!-- import script -->
-	      <script type="module" th:src="@{/assets/js/script.js}"></script>
+    <!-- Import scripts với defer -->
+    <script type="module" th:src="@{/assets/js/script.js}" defer></script>
+    <script type="module" th:src="@{/assets/js/auth.js}" defer></script>
+    <script type="module" th:src="@{/assets/js/search.js}" defer></script>
 
-		  <!-- auth.js -->
-		   <script type="module" th:src="@{/assets/js/auth.js}"></script>
-
-
+    <!-- CSS tùy chỉnh để kiểm soát navbar -->
+    <style>
+        .navbar {
+            padding: 0.5rem 1rem;
+        }
+        .navbar .nav-item {
+            display: flex;
+            align-items: center;
+        }
+        #navbar-search-form {
+            display: flex;
+            align-items: center;
+            margin: 0;
+        }
+        #navbar-search-input {
+            height: 30px;
+            font-size: 0.9rem;
+            width: 150px;
+            padding: 0.25rem 0.5rem;
+        }
+        #navbar-search-form button {
+            height: 30px;
+            padding: 0 10px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+        }
+        .navbar .nav-link {
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+        }
+        .head-sing {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .header-logo h2 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+		.titlecard{
+			text-align: center;
+		}
+    </style>
 </head>
 
- <body>
+<body class="bg-dark">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-dark bg-black fixed-top  ">
-            <div class="container-fluid ">
-              <a class="navbar-brand header-logo" href="/index">
-                <h2 class="logo-footer">Taplis</h2>
-              </a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="mynavbar">
-                <ul class="navbar-nav me-auto">
-                  <li class="nav-item p-3 item-head">
-                    <a class="nav-link" href="/lobby">Trang chủ </a>
-                  </li>
-                  <li class="nav-item p-3 item-head">
-                    <a class="nav-link" href="javascript:void(0)">Đặt vé</a>
-                  </li>
-                  <li class="nav-item p-3">
-                    <a class="nav-link" href="/search">
-                        <!-- <div class="head-search">
-                            <input type="text" placeholder="search">
-                            <i class='bx bx-search-alt-2'></i>
-                        </div> -->
-                        <input class="form-control me-2" type="text" placeholder="Search">
-                       
+        <nav class="navbar navbar-expand-sm navbar-dark bg-black fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand header-logo" href="/index">
+                    <h2 class="logo-footer">Taplis</h2>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="mynavbar">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item p-3 item-head">
+                            <a class="nav-link" href="/lobby">Trang chủ</a>
+                        </li>
+                        <li class="nav-item p-3 item-head">
+                            <a class="nav-link" href="javascript:void(0)">Đặt vé</a>
+                        </li>
+                        <li class="nav-item p-3">
+                            <form id="navbar-search-form" class="d-flex">
+                                <input class="form-control me-2" type="text" id="navbar-search-input" placeholder="Search" autocomplete="off">
+                                <button class="btn btn-outline-light" type="submit">
+                                    <i class='bx bx-search-alt-2'></i>
+                                </button>
+                            </form>
+                        </li>
+                    </ul>
+                    <a href="#" id="avatar" class="head-sing text-decoration-none">
+                        <i class='bx bx-user'></i>
+                        <p class="m-0" style="color: inherit;">Đăng nhập</p>
                     </a>
-                  </li>
-                </ul>
-                    <a href="/login" id="avatar" class="head-sing text-decoration-none ">
-                    
-                            <i class='bx bx-user'></i>
-                            <p class="m-0" style="color: inherit;">Đăng nhập</p>
-                  
-                    </a>
-             
-              </div>
+                </div>
             </div>
-          </nav>
+        </nav>
     </header>
 
-    <!-- body -->
-    <body class="body bg-dark">
-        <!-- body-banner -->
-        <div class="container-fluid banner  bg-dark mt-5">
-            <div class="container">
-                <div id="demo" class="carousel slide" data-bs-ride="carousel">
-
-                    <!-- Indicators/dots -->
-                    <div class="carousel-indicators">
-                      <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
-                      <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-                     
+    <!-- Body -->
+    <div class="container-fluid banner bg-dark">
+        <div class="container">
+            <div id="demo" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+                    <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img th:src="@{./assets/img/1.webp}" alt="Movie Banner 1" class="d-block" style="width:100%">
                     </div>
-                    
-                    <!-- The slideshow/carousel -->
-                    <div class="carousel-inner">
-                      <div class="carousel-item active">
-                        <img th:src="@{./assets/img/1.webp}" alt="Los Angeles" class="d-block" style="width:100%">
-                      </div>
-                      <div class="carousel-item">
-                        <img th:src="@{./assets/img/2.jpg}" alt="Chicago" class="d-block" style="width:100%">
-                      </div>
-                     
+                    <div class="carousel-item">
+                        <img th:src="@{./assets/img/2.jpg}" alt="Movie Banner 2" class="d-block" style="width:100%">
                     </div>
-                    
-                    <!-- Left and right controls/icons -->
-                    <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
-                      <span class="carousel-control-prev-icon"></span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
-                      <span class="carousel-control-next-icon"></span>
-                    </button>
-                  </div>
-                  
-                 
-            </div> 
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+            </div>
         </div>
+    </div>
 
-        <!-- body-card -->
-         <div class="container-fluid mb-5 mt-5 ">
-            <section class="trending-movie pb-2 pt-3">
-                <h2>Trending movie</h2>
-                <div class="swiper">
+    <!-- Khu vực hiển thị kết quả tìm kiếm -->
+    <div class="container mb-5 mt-5">
+        <div id="movies" class="movies-grid"></div>
+    </div>
 
-                    <div class="swiper-wrapper" id="trend-movie">
-                        <div class="swiper-slide">
-                            <!-- <img src="img/p5webp.webp" alt="p1">
-                            <p>hello</p>
-                           
-                        
+    <!-- Danh sách phim Trending và Popular -->
+    <div class="container-fluid mb-5 mt-5">
+        <section class="trending-movie pb-2 pt-3">
+            <h2>Trending movie</h2>
+            <div class="swiper trending-swiper">
+                <div class="swiper-wrapper" id="trend-movie">
+                    <div th:each="movie : ${trendingMovies}" class="swiper-slide">
+                        <a th:href="@{/movie/{id}(id=${movie.id})}">
+                            <img th:src="${movie.posterPath}" th:alt="${movie.title}">
+                            <p th:text="${movie.title}" class="titlecard"></p>
+                        </a>
+                    </div>
+                </div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </section>
+
+        <section class="trending-movie popular-movie">
+            <h2>Popular movie</h2>
+            <div class="swiper popular-swiper">
+                <div class="swiper-wrapper" id="Popular-movie">
+                    <div th:each="movie : ${popularMovies}" class="swiper-slide">
+                        <a th:href="@{/movie/{id}(id=${movie.id})}">
+                            <img th:src="${movie.posterPath}" th:alt="${movie.title}">
+                            <p th:text="${movie.title}"></p>
+                        </a>
+                    </div>
+                </div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer mt-5 bg-ft bg-black text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-6">
+                    <h2 class="logo-footer">Taplis</h2>
+                    <p>BE HAPPY, BE A STAR</p>
+                    <div class="icon-ft">
+                        <a href="https://facebook.com/taplis"><i class='bx bxl-facebook-circle'></i></a>
+                        <a href="https://twitter.com/taplis"><i class='bx bxl-twitter'></i></a>
+                        <a href="https://instagram.com/taplis"><i class='bx bxl-instagram'></i></a>
+                    </div>
+                    <p>Source: Taplis-developer</p>
+                </div>
+                <div class="col-md-8 col-sm-6">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 text-center">
+                            <ul class="ft-item">
+                                <li class="pb-2 footer-li">Thể loại</li>
+                                <li>Hành động</li>
+                                <li>Tình cảm</li>
+                                <li>Hài hước</li>
+                            </ul>
                         </div>
-
-
+                        <div class="col-md-4 col-sm-4 text-center">
+                            <ul class="ft-item">
+                                <li class="pb-2 footer-li">Thể loại</li>
+                                <li>Hành động</li>
+                                <li>Tình cảm</li>
+                                <li>Hài hước</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4 col-sm-4 text-center">
+                            <ul class="ft-item">
+                                <li class="pb-2 footer-li">Thể loại</li>
+                                <li>Hành động</li>
+                                <li>Tình cảm</li>
+                                <li>Hài hước</li>
+                            </ul>
+                        </div>
                     </div>
-                    
-                
-                    <!-- If we need navigation buttons -->
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-button-next"></div>
-                </section>
+                </div>
             </div>
-
-            <section class="trending-movie ">
-                <h2>Popular movie</h2>
-                <div class="swiper">
-
-                    <div class="swiper-wrapper" id="Popular-movie">
-                        <!-- <a href="#" class="swiper-slide">
-                            <img src="img/p5webp.webp" alt="p1">
-                            <p>hello</p>
-                          
-                        
-                        </a> -->
-
-
-                    </div>
-                    
-                
-                    <!-- If we need navigation buttons -->
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-button-next"></div>
-                </section>
-            </div>
-
-         </div>
-       
-     
-       
-    </body>
-
-
-    <!-- footer -->
-    <footer class="footer mt-5 bg-ft bg-black text-white ">
-      <div class="container">
-          <div class="row">
-              <div class="col-md-4 col-sm-6">
-                  <h2 class="logo-footer">Taplis</h2>
-                  <p>BE HAPPY, BE A STAR</p>
-                  <div class="icon-ft">
-                      <a href=""><i class='bx bxl-facebook-circle'></i></a>
-                      <a href=""><i class='bx bxl-twitter'></i></a>
-                      <a href=""><i class='bx bxl-instagram' ></i></a>
-                  </div>
-                  <p>Source: Taplis-developer</p>
-              </div>
-              <div class="col-md-8 col-sm-6">
-                  <div class="row">
-                      <div class="col-md-4 col-sm-4 text-center">
-                        
-                          <ul class="ft-item">
-                              <li class="pb-2 footer-li">Thể loại</li>
-                              <li>Hành động</li>
-                              <li>Tình cảm</li>
-                              <li>Hài hước</li>
-                          </ul>
-                      </div>
-                      <div class="col-md-4 col-sm-4 text-center">
-                        
-                          <ul class="ft-item">
-                              <li class="pb-2 footer-li">Thể loại</li>
-                              <li>Hành động</li>
-                              <li>Tình cảm</li>
-                              <li>Hài hước</li>
-                          </ul>
-                      </div>
-                      <div class="col-md-4 col-sm-4 text-center">
-                        
-                          <ul class="ft-item">
-                              <li class="pb-2 footer-li">Thể loại</li>
-                              <li>Hành động</li>
-                              <li>Tình cảm</li>
-                              <li>Hài hước</li>
-                          </ul>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </footer>
-
-
-   
-
+        </div>
+    </footer>
 </body>
-
 </html>

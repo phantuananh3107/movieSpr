@@ -2,89 +2,72 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Taplis movie</title>
-	
-	<link rel="stylesheet" th:href="@{/assets/css/style.css}">
-	<link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}">
-	<script th:src="@{/assets/js/bootstrap.bundle.min.js}"></script>
-	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taplis movie - Home</title>
+    
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}">
+    <script th:src="@{/assets/js/bootstrap.bundle.min.js}"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
-	<!-- swipper cdn -->
-	   <link rel="stylesheet"  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <!-- Swiper CDN (not used, but kept for potential future use) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-	   <!-- swiper js cdn -->
-	       <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-	       <!-- import script -->
-	      <script type="module" th:src="@{/assets/js/script.js}"></script>
-	       <script type="module" th:src="@{/assets/js/auth.js}"></script>
+    <!-- Import scripts -->
+    <script type="module" th:src="@{/assets/js/script.js}"></script>
+    <script type="module" th:src="@{/assets/js/auth.js}"></script>
 </head>
 
- <body>
+<body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-dark bg-black fixed-top  ">
-            <div class="container-fluid ">
-              <a class="navbar-brand header-logo" href="/index">
-                <h2 class="logo-footer">Taplis</h2>
-              </a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="mynavbar">
-                <ul class="navbar-nav me-auto">
-                  <li class="nav-item p-3 item-head">
-                    <a class="nav-link" href="/lobby">Trang chủ </a>
-                  </li>
-                  <li class="nav-item p-3 item-head">
-                    <a class="nav-link" href="javascript:void(0)">Đặt vé</a>
-                  </li>
-                  <li class="nav-item p-3">
-                    <a class="nav-link" href="./search">
-                        <!-- <div class="head-search">
-                            <input type="text" placeholder="search">
-                            <i class='bx bx-search-alt-2'></i>
-                        </div> -->
-                        <input class="form-control me-2" type="text" placeholder="Search">
-                       
+        <nav class="navbar navbar-expand-sm navbar-dark bg-black fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand header-logo" href="/index">
+                    <h2 class="logo-footer">Taplis</h2>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="mynavbar">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item p-3 item-head">
+                            <a class="nav-link" href="/lobby">Trang chủ</a>
+                        </li>
+                        <li class="nav-item p-3 item-head">
+                            <a class="nav-link" href="javascript:void(0)">Đặt vé</a>
+                        </li>
+                        <li class="nav-item p-3">
+                            <a class="nav-link" href="/search">
+                                <input class="form-control me-2" type="text" placeholder="Search">
+                            </a>
+                        </li>
+                    </ul>
+                    <a href="/login" class="head-sing text-decoration-none" id="avatar">
+                        <i class='bx bx-user'></i>
+                        <p class="m-0" style="color: inherit;">Đăng nhập</p>
                     </a>
-                  </li>
-                </ul>
-                    <a href="/login" class="head-sing text-decoration-none " id="avatar">
-                    
-                            <i class='bx bx-user'></i>
-                            <p class="m-0" style="color: inherit;">Đăng nhập</p>
-                  
-                    </a>
-             
-              </div>
+                </div>
             </div>
-          </nav>
+        </nav>
     </header>
 
-    <!-- body -->
-    <body class="body bg-dark ">
-    <section class="homeMovie container ">
-        <h2 id="home-title" >Nổi bật</h2>
-        <div id="homeMovie">
-            <!-- <a href="#" class="movie-card ">
-                <img src="img/p5webp.webp" alt="p1">
-                <p>hello</p>
-                
-            </a> -->
-        </div>
-    </section>
-    
-
-
-       
-     
-       
+    <!-- Body -->
+    <body class="body bg-dark">
+        <section class="homeMovie container mt-5">
+            <h2 id="home-title">Nổi bật</h2>
+            <div id="homeMovie" class="d-flex flex-wrap">
+                <a th:each="movie : ${homeMovies}" th:href="@{/movie/{id}(id=${movie.id})}" class="movie-card m-2">
+                    <img th:src="${movie.posterPath}" alt="Movie Poster">
+                    <p th:text="${movie.title}"></p>
+                </a>
+            </div>
+        </section>
     </body>
 
-
-    <!-- footer -->
-    <footer class="footer mt-5 bg-ft bg-black text-white ">
+    <!-- Footer -->
+    <footer class="footer mt-5 bg-ft bg-black text-white">
         <div class="container">
             <div class="row">
                 <div class="col-md-4 col-sm-6">
@@ -93,14 +76,13 @@
                     <div class="icon-ft">
                         <a href=""><i class='bx bxl-facebook-circle'></i></a>
                         <a href=""><i class='bx bxl-twitter'></i></a>
-                        <a href=""><i class='bx bxl-instagram' ></i></a>
+                        <a href=""><i class='bx bxl-instagram'></i></a>
                     </div>
                     <p>Source: Taplis-developer</p>
                 </div>
                 <div class="col-md-8 col-sm-6">
                     <div class="row">
                         <div class="col-md-4 col-sm-4 text-center">
-                          
                             <ul class="ft-item">
                                 <li class="pb-2 footer-li">Thể loại</li>
                                 <li>Hành động</li>
@@ -109,7 +91,6 @@
                             </ul>
                         </div>
                         <div class="col-md-4 col-sm-4 text-center">
-                          
                             <ul class="ft-item">
                                 <li class="pb-2 footer-li">Thể loại</li>
                                 <li>Hành động</li>
@@ -118,7 +99,6 @@
                             </ul>
                         </div>
                         <div class="col-md-4 col-sm-4 text-center">
-                          
                             <ul class="ft-item">
                                 <li class="pb-2 footer-li">Thể loại</li>
                                 <li>Hành động</li>
@@ -131,9 +111,5 @@
             </div>
         </div>
     </footer>
-
-
-   
-
 </body>
 </html>

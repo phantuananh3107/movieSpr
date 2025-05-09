@@ -449,3 +449,84 @@ section > h2{
     cursor: pointer;
     margin-left: 15px;
 }
+.movie-detail {
+    position: relative;
+    min-height: 100vh; /* Đảm bảo chiều cao tối thiểu */
+    padding: 20px;
+}
+
+.background-blur {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    filter: blur(10px); /* Hiệu ứng mờ */
+    z-index: -1; /* Đặt phía sau nội dung */
+    opacity: 0.5; /* Độ mờ của hình nền */
+}
+
+.movie-info {
+    background: rgba(0, 0, 0, 0.7); /* Nền tối mờ để chữ dễ đọc */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#poster_path{
+	width: 300px;
+	    height: auto;
+	    border-radius: 16px;
+	    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+/* Khu vực hiển thị kết quả tìm kiếm */
+.movies-grid {
+    margin: 0 auto;
+    max-width: 1200px; /* Giới hạn chiều rộng tối đa */
+    padding: 0 15px; /* Thêm padding để không sát lề */
+}
+
+/* Container cho danh sách phim */
+.search-results {
+    display: flex !important; /* Đảm bảo flex không bị ghi đè */
+    flex-wrap: wrap !important; /* Đảm bảo xuống dòng */
+    justify-content: center; /* Căn giữa các phim */
+    gap: 20px; /* Khoảng cách giữa các phim */
+}
+
+/* Mỗi phim trong kết quả tìm kiếm */
+.search-item {
+    text-decoration: none;
+    color: inherit;
+    width: 300px !important; /* Chiều rộng cố định, không bị ghi đè */
+    max-width: 300px; /* Đảm bảo không vượt quá 150px */
+    display: flex !important; /* Đảm bảo flex không bị ghi đè */
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+/* Hiệu ứng hover */
+.search-item:hover {
+    transform: scale(1.05);
+}
+
+/* Hình ảnh phim */
+.search-item img {
+    width: 100% !important; /* Đảm bảo hình ảnh chỉ rộng bằng search-item */
+    max-width: 300px !important; /* Không vượt quá chiều rộng của search-item */
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Tiêu đề phim */
+.search-item p {
+    margin-top: 5px;
+    font-size: 14px;
+    text-align: center;
+    color: white !important;
+    line-height: 1.2;
+}

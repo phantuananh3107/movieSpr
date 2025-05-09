@@ -1,149 +1,171 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Taplis movie</title>
-	
-	<link rel="stylesheet" th:href="@{/assets/css/style.css}">
-	<link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}">
-	<script th:src="@{/assets/js/bootstrap.bundle.min.js}"></script>
-	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${movie != null} ? ${movie.title} : 'Chi tiết phim - Taplis'">Chi tiết phim - Taplis</title>
+    <link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        body {
+            position: relative;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
 
-	<!-- swipper cdn -->
-	   <link rel="stylesheet"  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+        /* Nền sử dụng backdropPath */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: blur(2px); /* Giảm độ blur để không bị mờ */
+            opacity: 0.9;
+            z-index: -1;
+            background-image: var(--backdrop-image, none); /* Sử dụng CSS variable */
+        }
 
-	   <!-- swiper js cdn -->
-	       <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-	       <!-- import script -->
-	     <script type="module" th:src="@{/assets/js/script.js}"></script>
-	     <script type="module" th:src="@{/assets/js/auth.js}"></script>
+        .movie-detail {
+            margin-top: 100px;
+            padding: 40px;
+            color: #fff;
+            border-radius: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .movie-detail img {
+            border-radius: 10px;
+            max-width: 100%;
+            width: 200px; /* Giảm kích thước ảnh */
+            height: auto;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Thêm bóng cho hình ảnh */
+        }
+
+        .movie-detail h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .movie-detail p {
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .movie-detail .overview {
+            margin-top: 20px;
+            line-height: 1.6;
+        }
+
+        /* Nút Đặt vé và Xem trailer */
+        .movie-detail .btn {
+            margin-right: 10px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-book {
+            background-color: #dc3545; /* Màu đỏ cho nút Đặt vé */
+            border: none;
+        }
+
+        .btn-book:hover {
+            background-color: #c82333;
+        }
+
+        .btn-trailer {
+            background-color: #007bff; /* Màu xanh dương cho nút Xem trailer */
+            border: none;
+        }
+
+        .btn-trailer:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
-
- <body>
+<body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-dark bg-black fixed-top  ">
-            <div class="container-fluid ">
-              <a class="navbar-brand header-logo" href="/index">
-                <h2 class="logo-footer">Taplis</h2>
-              </a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="mynavbar">
-                <ul class="navbar-nav me-auto">
-                  <li class="nav-item p-3 item-head">
-                    <a class="nav-link" href="/index">Trang chủ </a>
-                  </li>
-                  <li class="nav-item p-3 item-head">
-                    <a class="nav-link" href="javascript:void(0)">Đặt vé</a>
-                  </li>
-                  <li class="nav-item p-3">
-                    <a class="nav-link" href="/search">
-                        <!-- <div class="head-search">
-                            <input type="text" placeholder="search">
-                            <i class='bx bx-search-alt-2'></i>
-                        </div> -->
-                        <input class="form-control me-2" type="text" placeholder="Search">
-                       
+        <nav class="navbar navbar-expand-sm navbar-dark bg-black fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand header-logo" href="/index">
+                    <h2 class="logo-footer">Taplis</h2>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="mynavbar">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item p-3 item-head">
+                            <a class="nav-link" href="/lobby">Trang chủ</a>
+                        </li>
+                        <li class="nav-item p-3 item-head">
+                            <a class="nav-link" href="javascript:void(0)">Đặt vé</a>
+                        </li>
+                        <li class="nav-item p-3">
+                            <form id="navbar-search-form" class="d-flex">
+                                <input class="form-control me-2" type="text" id="navbar-search-input" placeholder="Search" autocomplete="off">
+                                <button class="btn btn-outline-light" type="submit">
+                                    <i class='bx bx-search-alt-2'></i>
+                                </button>
+                            </form>
+                        </li>
+                    </ul>
+                    <a href="#" id="avatar" class="head-sing text-decoration-none">
+                        <i class='bx bx-user'></i>
+                        <p class="m-0" style="color: inherit;">Đăng nhập</p>
                     </a>
-                  </li>
-                </ul>
-                    <a href="#" id="avatar" class="head-sing text-decoration-none ">
-                    
-                            <i class='bx bx-user'></i>
-                            <p class="m-0" style="color: inherit;">Đăng nhập</p>
-                  
-                    </a>
-             
-              </div>
+                </div>
             </div>
-          </nav>
+        </nav>
     </header>
 
-    <!-- body -->
-    <body class="body bg-dark ">
-        <div class="movie-detail"id="movie-detail" >
-            <div class="background-blur"></div> <!-- Nền riêng biệt -->
-    
-            <div class="movie-poster">
-                <img src="" alt="Movie Poster" id="poster_path">
-            </div>
-            <div class="movie-info">
-                <h1 id="name">Holland (2025)</h1>
-                <span>release-date : <span class="release-date " id="release_date">03/09/2025 (US)</span></span>
-
-                <p class="overview-title"  >Overview</p>
-                <p class="overview-text" id="overview">Nancy is a teacher whose life with her husband in Holland, Michigan, tumbles into a twisted tale when she and her colleague become suspicious of a secret.</p>
-                <p>vote_average :  <span  id="vote_average">Score: </span></p>
-               
-                <div class="detail-btn">
-                    <p >Đặt vé</p>
-                    <div class="detail-item">
-                        <i class='bx bx-play'></i>
-                        <a href="" id="trailer">Play Trailer</a>
-                    </div>
-                </div>
-            </div>
-            
-        </div>
-      
-    </body>
-
-
- 
-    <footer class="footer mt-5 bg-ft bg-black text-white ">
-        <div class="container">
+    <div class="movie-detail container">
+        <!-- Kiểm tra nếu movie tồn tại -->
+        <div th:if="${movie != null}">
             <div class="row">
-                <div class="col-md-4 col-sm-6">
-                    <h2 class="logo-footer">Taplis</h2>
-                    <p>BE HAPPY, BE A STAR</p>
-                    <div class="icon-ft">
-                        <a href=""><i class='bx bxl-facebook-circle'></i></a>
-                        <a href=""><i class='bx bxl-twitter'></i></a>
-                        <a href=""><i class='bx bxl-instagram' ></i></a>
-                    </div>
-                    <p>Source: Taplis-developer</p>
+                <div class="col-md-4">
+                    <img th:src="${movie.posterPath}" th:alt="${movie.title}" />
                 </div>
-                <div class="col-md-8 col-sm-6">
-                    <div class="row">
-                        <div class="col-md-4 col-sm-4 text-center">
-                          
-                            <ul class="ft-item">
-                                <li class="pb-2 footer-li">Thể loại</li>
-                                <li>Hành động</li>
-                                <li>Tình cảm</li>
-                                <li>Hài hước</li>
-                            </ul>
-                        </div>
-                        <div class="col-md-4 col-sm-4 text-center">
-                          
-                            <ul class="ft-item">
-                                <li class="pb-2 footer-li">Thể loại</li>
-                                <li>Hành động</li>
-                                <li>Tình cảm</li>
-                                <li>Hài hước</li>
-                            </ul>
-                        </div>
-                        <div class="col-md-4 col-sm-4 text-center">
-                          
-                            <ul class="ft-item">
-                                <li class="pb-2 footer-li">Thể loại</li>
-                                <li>Hành động</li>
-                                <li>Tình cảm</li>
-                                <li>Hài hước</li>
-                            </ul>
-                        </div>
+                <div class="col-md-8">
+                    <h1 th:text="${movie.title}"></h1>
+                    <p><strong>Ngày phát hành:</strong> <span th:text="${movie.releaseDate}"></span></p>
+                    <p><strong>Điểm đánh giá:</strong> <span th:text="${movie.voteAverage}"></span></p>
+                    <p class="overview"><strong>Tóm tắt:</strong> <span th:text="${movie.overview}"></span></p>
+                    <div class="mt-3">
+                        <a th:href="@{'/booking/' + ${movie.id}}" class="btn btn-book">Đặt vé</a>
+                        <a th:href="${movie.trailer}" target="_blank" class="btn btn-trailer">Xem trailer</a>
                     </div>
                 </div>
             </div>
         </div>
-    </footer>
+        <!-- Nếu movie không tồn tại, hiển thị thông báo -->
+        <div th:if="${movie == null}">
+            <h2>Không tìm thấy phim.</h2>
+            <a href="/index" class="btn btn-primary">Quay lại trang chủ</a>
+        </div>
+    </div>
 
-
-
-   
-
+    <script th:src="@{/assets/js/bootstrap.bundle.min.js}"></script>
+    <script>
+        // Đặt background-image cho nền sử dụng backdropPath
+        document.addEventListener('DOMContentLoaded', function() {
+            const backdropPath = '[[${movie != null} ? ${movie.backdropPath} : '']]'; // Sử dụng backdropPath
+            console.log('Backdrop Path:', backdropPath);
+            if (backdropPath && backdropPath !== '' && backdropPath !== 'null') {
+                document.body.style.setProperty('--backdrop-image', `url(${backdropPath})`);
+            } else {
+                document.body.style.setProperty('--backdrop-image', 'none');
+            }
+        });
+    </script>
 </body>
 </html>

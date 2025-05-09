@@ -1,107 +1,164 @@
-.main{
-    background: #1c1c1c;
-    color: white;
-    padding: 2rem;
-    width: 100%;
-    height: 100%;
-    min-height:800px;
-}
-form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 144px 32px 0 32px;
-
-}
-form h1{
-    text-align: center;
-    font-size: 30px;
-    line-height: 36px;
-    margin-bottom: 24px;
-    font-weight: 500;
-
-}
-form div{
-    width: 100%;
-    max-width: 576px;
-    position: relative;
-}
-form input{
-    outline:none;
-    border:none;
-    width: 100%;
-    height: 100%;
-    padding: 12px 12px 12px 56px;
-    font-size: 24px;
-    line-height: 32px;
-    background: #222;
-    color: #888;
-    border-radius: 6px;
+.main {
+	background: #1c1c1c;
+	color: white;
+	padding: 2rem;
+	width: 100%;
+	height: 100%;
+	min-height: 800px;
 }
 
-form button{
-    position: absolute;
-    top: 50%;
-    left: 15px;
-    transform: translateY(-50%);
-    outline: none;
-    border: none;
-    background: none;
-    color:white;
-    font-size: 1.4rem;
+form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin: 144px 32px 0 32px;
+
 }
-form input::placeholder{
-    color:#6b7280;
+
+form h1 {
+	text-align: center;
+	font-size: 30px;
+	line-height: 36px;
+	margin-bottom: 24px;
+	font-weight: 500;
+
+}
+
+form div {
+	width: 100%;
+	max-width: 576px;
+	position: relative;
+}
+
+form input {
+	outline: none;
+	border: none;
+	width: 100%;
+	height: 100%;
+	padding: 12px 12px 12px 56px;
+	font-size: 24px;
+	line-height: 32px;
+	background: #222;
+	color: #888;
+	border-radius: 6px;
+}
+
+form button {
+	position: absolute;
+	top: 50%;
+	left: 15px;
+	transform: translateY(-50%);
+	outline: none;
+	border: none;
+	background: none;
+	color: white;
+	font-size: 1.4rem;
+}
+
+form input::placeholder {
+	color: #6b7280;
 }
 
 
 
 /* Container của toàn bộ phần phim */
 #movies {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 30px !important;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 20px;
+	padding: 30px !important;
 }
 
 /* Card của từng phim */
 .search-item {
-    width: 250px; /* Đảm bảo tất cả đồng nhất kích thước */
-    height: 375px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Giúp hình ảnh và text tách biệt */
-    background-color: #444;
-    border-radius: 12px;
-    overflow: hidden;
-    border: none;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease;
-    margin:  20px;
+	width: 250px;
+	/* Đảm bảo tất cả đồng nhất kích thước */
+	height: 375px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	/* Giúp hình ảnh và text tách biệt */
+	background-color: #444;
+	border-radius: 12px;
+	overflow: hidden;
+	border: none;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+	transition: transform 0.2s ease-in-out, box-shadow 0.2s ease;
+	margin: 20px;
 }
 
 /* Hover Effect */
 .search-item:hover {
-    transform: scale(1.05);
-    box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.5);
+	transform: scale(1.05);
+	box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.5);
 }
 
 /* Ảnh trong card */
 .search-item img {
-    width: 100%;
-    height: 90%; /* Đảm bảo tất cả ảnh có cùng chiều cao */
-    object-fit: cover; /* Giữ tỉ lệ nhưng crop nếu cần */
+	width: 100%;
+	height: 90%;
+	/* Đảm bảo tất cả ảnh có cùng chiều cao */
+	object-fit: cover;
+	/* Giữ tỉ lệ nhưng crop nếu cần */
 }
 
 /* Text mô tả trong card */
 .search-item p {
-    margin: 0;
-    padding: 10px;
-    background-color: #333;
-    color: white;
-    font-size: 1rem;
+	margin: 0;
+	padding: 10px;
+	background-color: #333;
+	color: white;
+	font-size: 1rem;
+	text-align: center;
+	border-radius: 0 0 12px 12px;
+}
+/* Khu vực hiển thị kết quả tìm kiếm */
+.movies-grid {
+    margin: 0 auto;
+    max-width: 1200px; /* Giới hạn chiều rộng tối đa */
+    padding: 0 15px; /* Thêm padding để không sát lề */
+}
+
+/* Container cho danh sách phim */
+.search-results {
+    display: flex !important; /* Đảm bảo flex không bị ghi đè */
+    flex-wrap: wrap;
+    justify-content: center; /* Căn giữa các phim */
+    gap: 20px; /* Khoảng cách giữa các phim */
+}
+
+/* Mỗi phim trong kết quả tìm kiếm */
+.search-item {
+    text-decoration: none;
+    color: inherit;
+    width: 150px; /* Chiều rộng cố định */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Căn giữa nội dung trong search-item */
+    transition: transform 0.3s ease; /* Hiệu ứng hover */
+}
+
+/* Hiệu ứng hover */
+.search-item:hover {
+    transform: scale(1.05); /* Phóng to nhẹ khi hover */
+}
+
+/* Hình ảnh phim */
+.search-item img {
+    width: 100%;
+    height: 225px; /* Chiều cao cố định */
+    object-fit: cover; /* Đảm bảo hình ảnh không bị méo */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Thêm bóng */
+}
+
+/* Tiêu đề phim */
+.search-item p {
+    margin-top: 5px;
+    font-size: 14px;
     text-align: center;
-    border-radius: 0 0 12px 12px;
+    color: white !important; /* Đảm bảo màu chữ là trắng */
+    line-height: 1.2; /* Tăng khoảng cách dòng cho dễ đọc */
 }
