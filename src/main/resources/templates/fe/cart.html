@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ hàng - Taplis</title>
+    <link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2c3e50 100%);
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .cart-container {
+            margin-top: 120px;
+            padding: 30px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .cart-container h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #00ddeb;
+            text-shadow: 0 0 10px rgba(0, 221, 235, 0.5);
+        }
+        .cart-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .cart-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 221, 235, 0.3);
+        }
+        .cart-item p {
+            margin: 5px 0;
+            font-size: 1rem;
+            color: #e0e0e0;
+        }
+        .cart-item p span {
+            color: #00ddeb;
+            font-weight: 600;
+        }
+        .empty-cart {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #a0a0a0;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            background: linear-gradient(90deg, #00ddeb 0%, #007bff 100%);
+            border: none;
+            padding: 12px 25px;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .back-btn:hover {
+            background: linear-gradient(90deg, #007bff 0%, #00ddeb 100%);
+            box-shadow: 0 0 15px rgba(0, 221, 235, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-black fixed-top">
+            <div class="container-fluid">
+                <a class="navbar-brand header-logo" href="/index">
+                    <h2 class="logo-footer">Taplis</h2>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="mynavbar">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item p-3 item-head">
+                            <a class="nav-link" href="/lobby">Trang chủ</a>
+                        </li>
+                        <li class="nav-item p-3 item-head">
+                            <a class="nav-link" href="javascript:void(0)">Đặt vé</a>
+                        </li>
+                        <li class="nav-item p-3">
+                            <form id="navbar-search-form" class="d-flex">
+                                <input class="form-control me-2" type="text" id="navbar-search-input" placeholder="Search" autocomplete="off">
+                                <button class="btn btn-outline-light" type="submit">
+                                    <i class='bx bx-search-alt-2'></i>
+                                </button>
+                            </form>
+                        </li>
+                    </ul>
+                    <div class="d-flex">
+                        <a href="/cart" id="cart-icon" class="head-sing text-decoration-none">
+                            <i class='bx bx-cart'></i>
+                            <p class="m-0" style="color: inherit;">Cart</p>
+                        </a>
+                        <a href="#" id="avatar" class="head-sing text-decoration-none">
+                            <i class='bx bx-user'></i>
+                            <p class="m-0" style="color: inherit;">Đăng nhập</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="cart-container container">
+        <h2>Giỏ hàng của bạn</h2>
+        <div th:if="${cart.isEmpty()}">
+            <p class="empty-cart">Giỏ hàng trống.</p>
+        </div>
+        <div th:unless="${cart.isEmpty()}">
+            <div th:each="ticket : ${cart}" class="cart-item">
+                <p>Mã phim: <span th:text="${ticket.movieId}"></span></p>
+                <p>Rạp: <span th:text="${ticket.cinema}"></span></p>
+                <p>Số lượng: <span th:text="${ticket.quantity}"></span></p>
+                <p>Tổng tiền: <span th:text="${ticket.totalPrice} + ' VNĐ'"></span></p>
+                <p>Thời gian đặt: <span th:text="${#temporals.format(ticket.bookingDateTime, 'dd-MM-yyyy HH:mm')}"></span></p>
+            </div>
+        </div>
+        <a href="/index" class="back-btn">Quay lại</a>
+    </div>
+
+    <script th:src="@{/assets/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

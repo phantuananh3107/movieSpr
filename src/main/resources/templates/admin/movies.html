@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Movie List</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2c3e50 100%);
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        h2 {
+            text-align: center;
+            color: #00ddeb;
+            text-shadow: 0 0 10px rgba(0, 221, 235, 0.5);
+        }
+        .stats-box {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 221, 235, 0.3);
+        }
+        .stats-box p {
+            margin: 5px 0;
+            font-size: 1.1rem;
+            color: #e0e0e0;
+        }
+        .stats-box p span {
+            color: #00ddeb;
+            font-weight: 600;
+        }
+        .table {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .table th {
+            background: #00ddeb;
+            color: #1a1a1a;
+        }
+        .table td {
+            color: #e0e0e0;
+        }
+        .btn-primary {
+            background: linear-gradient(90deg, #00ddeb 0%, #007bff 100%);
+            border: none;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(90deg, #007bff 0%, #00ddeb 100%);
+            box-shadow: 0 0 15px rgba(0, 221, 235, 0.5);
+        }
+        .btn-warning, .btn-danger {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Admin - Quản lý phim</h2>
+
+        <!-- Thống kê vé -->
+        <div class="stats-box mb-5">
+            <h4>Thống kê vé bán</h4>
+    
+            <p>Tổng số vé bán: <span th:text="${totalTicketsSold} ?: '0'"></span></p>
+            <p>Doanh thu: <span th:text="${totalRevenue} + ' VND' ?: '0 VND'"></span></p>
+        </div>
+
+        <!-- Phim bán chạy nhất -->
+        <div class="stats-box mt-4">
+            <h4>Top 5 Phim Bán Chạy Nhất</h4>
+            <ul class="list-group">
+                <li class="list-group-item" th:each="topMovie : ${topMovies}" th:text="${topMovie.movie.title} + ' - Số vé: ' + ${topMovie.totalTickets}"></li>
+            </ul>
+        </div>
+
+        <!-- Nút thêm phim và dropdown sắp xếp -->
+        <span class="mb-3 d-flex">
+            <a th:href="@{/admin/movies/new}" class="btn btn-primary m-3">Thêm phim mới</a>
+            <div class="dropdown m-3">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="sortDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    Sắp xếp theo
+                </button>
+                <ul class="dropdown-menu " aria-labelledby="sortDropdown">
+                    <li><a class="dropdown-item" th:href="@{/admin/movies(sort='票')}">Số vé</a></li>
+                    <li><a class="dropdown-item" th:href="@{/admin/movies}">ID</a></li>
+                </ul>
+            </div>
+        </span>
+
+        <!-- Bảng danh sách phim với số vé bán -->
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tên phim</th>
+                    <th>Ngày phát hành</th>
+                    <th>Đánh giá</th>
+                    <th>Số vé bán</th>
+                    <th>Số lượt mua</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="movie : ${listMovies}">
+                    <td th:text="${movie.movie.id}" class="text-black"></td>
+                    <td th:text="${movie.movie.title}" class="text-black"></td>
+                    <td th:text="${movie.movie.releaseDate}" class="text-black"></td>
+                    <td th:text="${movie.movie.voteAverage}" class="text-black"></td>
+                    <td th:text="${movie.totalTickets}" class="text-black"></td>
+                    <td th:text="${movie.purchaseCount}" class="text-black"></td>
+                    <td>
+                        <a th:href="@{/admin/movies/edit/{id}(id=${movie.movie.id})}" class="btn btn-warning btn-sm">Sửa</a>
+                        <a th:href="@{/admin/movies/delete/{id}(id=${movie.movie.id})}" class="btn btn-danger btn-sm">Xóa</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

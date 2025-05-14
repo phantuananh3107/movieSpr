@@ -1,45 +1,101 @@
 <!DOCTYPE html>
-  <html lang="en" xmlns:th="http://www.thymeleaf.org">
-  <head>
-      <meta charset="UTF-8">
-      <title>Admin - Add New Movie</title>
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  </head>
-  <body>
-      <div class="container mt-5">
-          <h2>Add New Movie</h2>
-          <form th:action="@{/admin/movies/save}" th:object="${movie}" method="post">
-              <div class="mb-3">
-                  <label for="title" class="form-label">Title</label>
-                  <input type="text" class="form-control" id="title" th:field="*{title}">
-              </div>
-              <div class="mb-3">
-                  <label for="releaseDate" class="form-label">Release Date</label>
-                  <input type="text" class="form-control" id="releaseDate" th:field="*{releaseDate}">
-              </div>
-              <div class="mb-3">
-                  <label for="overview" class="form-label">Overview</label>
-                  <textarea class="form-control" id="overview" th:field="*{overview}"></textarea>
-              </div>
-              <div class="mb-3">
-                  <label for="posterPath" class="form-label">Poster Path</label>
-                  <input type="text" class="form-control" id="posterPath" th:field="*{posterPath}">
-              </div>
-              <div class="mb-3">
-                  <label for="voteAverage" class="form-label">Rating</label>
-                  <input type="number" step="0.1" class="form-control" id="voteAverage" th:field="*{voteAverage}">
-              </div>
-              <div class="mb-3">
-                  <label for="trailer" class="form-label">Trailer URL</label>
-                  <input type="text" class="form-control" id="trailer" th:field="*{trailer}">
-              </div>
-              <div class="mb-3">
-                  <label for="backdropPath" class="form-label">Backdrop Path</label>
-                  <input type="text" class="form-control" id="backdropPath" th:field="*{backdropPath}">
-              </div>
-              <button type="submit" class="btn btn-success">Save</button>
-              <a th:href="@{/admin/movies}" class="btn btn-secondary">Cancel</a>
-          </form>
-      </div>
-  </body>
-  </html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Add New Movie</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2c3e50 100%);
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        h2 {
+            text-align: center;
+            color: #00ddeb;
+            text-shadow: 0 0 10px rgba(0, 221, 235, 0.5);
+        }
+        .form-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 221, 235, 0.3);
+        }
+        .form-label {
+            color: #e0e0e0;
+        }
+        .form-control {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+        .form-control:focus {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #00ddeb;
+            box-shadow: 0 0 5px rgba(0, 221, 235, 0.5);
+        }
+        .btn-success {
+            background: linear-gradient(90deg, #00ddeb 0%, #007bff 100%);
+            border: none;
+        }
+        .btn-success:hover {
+            background: linear-gradient(90deg, #007bff 0%, #00ddeb 100%);
+            box-shadow: 0 0 15px rgba(0, 221, 235, 0.5);
+        }
+        .btn-secondary {
+            background: #6c757d;
+            border: none;
+        }
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Thêm phim mới</h2>
+        <div class="form-container">
+            <form th:action="@{/admin/movies/save}" th:object="${movie}" method="post">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Tên phim</label>
+                    <input type="text" class="form-control" id="title" th:field="*{title}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="releaseDate" class="form-label">Ngày phát hành</label>
+                    <input type="date" class="form-control" id="releaseDate" th:field="*{releaseDate}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="overview" class="form-label">Mô tả</label>
+                    <textarea class="form-control" id="overview" th:field="*{overview}"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="posterPath" class="form-label">Poster URL</label>
+                    <input type="text" class="form-control" id="posterPath" th:field="*{posterPath}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="voteAverage" class="form-label">Đánh giá</label>
+                    <input type="number" step="0.1" class="form-control" id="voteAverage" th:field="*{voteAverage}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="trailer" class="form-label">Trailer URL</label>
+                    <input type="text" class="form-control" id="trailer" th:field="*{trailer}">
+                </div>
+                <div class="mb-3">
+                    <label for="backdropPath" class="form-label">Backdrop URL</label>
+                    <input type="text" class="form-control" id="backdropPath" th:field="*{backdropPath}">
+                </div>
+                <button type="submit" class="btn btn-success">Lưu</button>
+                <a th:href="@{/admin/movies}" class="btn btn-secondary">Hủy</a>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

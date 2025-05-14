@@ -8,7 +8,6 @@
 
     <link rel="stylesheet" th:href="@{/assets/css/style.css}">
     <link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}">
-    <!-- Đã bỏ liên kết đến search.css -->
     <script th:src="@{/assets/js/bootstrap.bundle.min.js}"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
@@ -21,51 +20,8 @@
     <script type="module" th:src="@{/assets/js/auth.js}" defer></script>
     <script type="module" th:src="@{/assets/js/search.js}" defer></script>
 
-    <!-- CSS tùy chỉnh để kiểm soát navbar -->
-    <style>
-        .navbar {
-            padding: 0.5rem 1rem;
-        }
-        .navbar .nav-item {
-            display: flex;
-            align-items: center;
-        }
-        #navbar-search-form {
-            display: flex;
-            align-items: center;
-            margin: 0;
-        }
-        #navbar-search-input {
-            height: 30px;
-            font-size: 0.9rem;
-            width: 150px;
-            padding: 0.25rem 0.5rem;
-        }
-        #navbar-search-form button {
-            height: 30px;
-            padding: 0 10px;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-        }
-        .navbar .nav-link {
-            padding: 0.5rem 1rem;
-            display: flex;
-            align-items: center;
-        }
-        .head-sing {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        .header-logo h2 {
-            margin: 0;
-            font-size: 1.5rem;
-        }
-		.titlecard{
-			text-align: center;
-		}
-    </style>
+    <!-- CSS tùy chỉnh -->
+    
 </head>
 
 <body class="bg-dark">
@@ -95,14 +51,27 @@
                             </form>
                         </li>
                     </ul>
-                    <a href="#" id="avatar" class="head-sing text-decoration-none">
-                        <i class='bx bx-user'></i>
-                        <p class="m-0" style="color: inherit;">Đăng nhập</p>
-                    </a>
+                    <div class="d-flex">
+                        <a href="/cart" id="cart-icon" class="head-sing text-decoration-none">
+                            <i class='bx bx-cart'></i>
+                            <p class="m-0" style="color: inherit;">Cart</p>
+                        </a>
+                        <a href="#" id="avatar" class="head-sing text-decoration-none">
+                            <i class='bx bx-user'></i>
+                            <p class="m-0" style="color: inherit;">Đăng nhập</p>
+                        </a>
+                    </div>
                 </div>
             </div>
         </nav>
     </header>
+	<!-- Thông báo thành công -->
+	  <div th:if="${success}" class="success-message">
+	      <p>Đặt vé thành công!</p>
+	      <div class="progress-bar-container">
+	          <div class="progress-bar"></div>
+	      </div>
+	  </div>
 
     <!-- Body -->
     <div class="container-fluid banner bg-dark">
@@ -135,6 +104,7 @@
         <div id="movies" class="movies-grid"></div>
     </div>
 
+  
     <!-- Danh sách phim Trending và Popular -->
     <div class="container-fluid mb-5 mt-5">
         <section class="trending-movie pb-2 pt-3">
@@ -153,7 +123,7 @@
             </div>
         </section>
 
-        <section class="trending-movie popular-movie">
+        <section class="trending-movie popular-movie text-center">
             <h2>Popular movie</h2>
             <div class="swiper popular-swiper">
                 <div class="swiper-wrapper" id="Popular-movie">
@@ -215,5 +185,95 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Xóa đoạn JavaScript cũ vì không cần thiết với Thymeleaf
+    </script>
+	<style>
+	        .navbar {
+	            padding: 0.5rem 1rem;
+	        }
+	        .navbar .nav-item {
+	            display: flex;
+	            align-items: center;
+	        }
+	        #navbar-search-form {
+	            display: flex;
+	            align-items: center;
+	            margin: 0;
+	        }
+	        #navbar-search-input {
+	            height: 30px;
+	            font-size: 0.9rem;
+	            width: 150px;
+	            padding: 0.25rem 0.5rem;
+	        }
+	        #navbar-search-form button {
+	            height: 30px;
+	            padding: 0 10px;
+	            font-size: 0.9rem;
+	            display: flex;
+	            align-items: center;
+	        }
+	        .nav-link {
+	            padding: 0.5rem 1rem;
+	            display: flex;
+	            align-items: center;
+	        }
+	        .head-sing {
+	            display: flex;
+	            align-items: center;
+	            gap: 5px;
+	        }
+	        .header-logo h2 {
+	            margin: 0;
+	            font-size: 1.5rem;
+	        }
+	        .titlecard {
+	            text-align: center;
+	        }
+	        .success-message {
+	            margin-top: 120px;
+	            max-width: 600px;
+	            margin-left: auto;
+	            margin-right: auto;
+	            background: rgba(255, 255, 255, 0.1);
+	            backdrop-filter: blur(10px);
+	            border-radius: 10px;
+	            border: 1px solid rgba(255, 255, 255, 0.2);
+	            padding: 20px;
+	            text-align: center;
+	            box-shadow: 0 5px 15px rgba(0, 221, 235, 0.3);
+	            animation: fadeOut 3s forwards;
+	        }
+	        .success-message p {
+	            margin: 0 0 10px 0;
+	            font-size: 1.2rem;
+	            color: #00ddeb;
+	            font-weight: 600;
+	        }
+	        .progress-bar-container {
+	            width: 100%;
+	            background: rgba(255, 255, 255, 0.2);
+	            border-radius: 5px;
+	            overflow: hidden;
+	        }
+	        .progress-bar {
+	            width: 0;
+	            height: 10px;
+	            background: linear-gradient(90deg, #00ddeb 0%, #007bff 100%);
+	            animation: progress 3s ease-in-out forwards;
+	        }
+	        @keyframes progress {
+	            from { width: 0; }
+	            to { width: 100%; }
+	        }
+	        @keyframes fadeOut {
+	            to { opacity: 0; }
+	        }
+	        .movie-list {
+	            margin-top: 20px;
+	        }
+	    </style>
 </body>
 </html>

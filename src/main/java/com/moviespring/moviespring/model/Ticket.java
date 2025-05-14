@@ -1,6 +1,7 @@
 package com.moviespring.moviespring.model;
 
 import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -11,38 +12,25 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "movie_id", nullable = false)
-    private Movie movie;
+    @Column(name = "movie_id")
+    private Long movieId;
 
-    @Column(name = "user_email", nullable = false)
+    @Column(name = "user_email")
     private String userEmail;
 
-    @Column(name = "quantity", nullable = false)
+    @Column(name = "quantity")
     private int quantity;
 
-    @Column(name = "booking_date", nullable = false)
-    private LocalDateTime bookingDate;
+    @Column(name = "booking_date_time", nullable = false)
+    private LocalDateTime bookingDateTime;
+
+    @Column(name = "cinema")
+    private String cinema;
 
     @Column(name = "total_price")
-    private double totalPrice;
+    private int totalPrice;
 
-    // Giả sử giá vé cố định là 10 USD/vé
-    private static final double PRICE_PER_TICKET = 10.0;
-
-    // Constructors
-    public Ticket() {
-    }
-
-    public Ticket(Movie movie, String userEmail, int quantity, LocalDateTime bookingDate) {
-        this.movie = movie;
-        this.userEmail = userEmail;
-        this.quantity = quantity;
-        this.bookingDate = bookingDate;
-        this.totalPrice = quantity * PRICE_PER_TICKET;
-    }
-
-    // Getters and Setters
+    // Getters và Setters
     public Long getId() {
         return id;
     }
@@ -51,12 +39,12 @@ public class Ticket {
         this.id = id;
     }
 
-    public Movie getMovie() {
-        return movie;
+    public Long getMovieId() {
+        return movieId;
     }
 
-    public void setMovie(Movie movie) {
-        this.movie = movie;
+    public void setMovieId(Long movieId) {
+        this.movieId = movieId;
     }
 
     public String getUserEmail() {
@@ -75,19 +63,27 @@ public class Ticket {
         this.quantity = quantity;
     }
 
-    public LocalDateTime getBookingDate() {
-        return bookingDate;
+    public LocalDateTime getBookingDateTime() {
+        return bookingDateTime;
     }
 
-    public void setBookingDate(LocalDateTime bookingDate) {
-        this.bookingDate = bookingDate;
+    public void setBookingDateTime(LocalDateTime bookingDateTime) {
+        this.bookingDateTime = bookingDateTime;
     }
 
-    public double getTotalPrice() {
+    public String getCinema() {
+        return cinema;
+    }
+
+    public void setCinema(String cinema) {
+        this.cinema = cinema;
+    }
+
+    public int getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(double totalPrice) {
+    public void setTotalPrice(int totalPrice) {
         this.totalPrice = totalPrice;
     }
 }
