@@ -1,5 +1,5 @@
 # Sử dụng image Java với Maven
-FROM maven:3.8.6-openjdk-17-slim AS build
+FROM maven:3.8.6-openjdk-17 AS build
 
 # Thiết lập thư mục làm việc
 WORKDIR /app
